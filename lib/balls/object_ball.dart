@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 
-class CueBall extends StatefulWidget {
-  final Widget child;
-
-  CueBall({Key key, this.child}) : super(key: key);
-
+class ObjectBall extends StatefulWidget {
   @override
-  _CueBallState createState() => _CueBallState();
+  _ObjectBallState createState() => _ObjectBallState();
 }
 
-class _CueBallState extends State<CueBall> {
+class _ObjectBallState extends State<ObjectBall> {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: CueBallPainter(),
+      painter: ObjectBallPainter(),
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -22,19 +18,19 @@ class _CueBallState extends State<CueBall> {
   }
 }
 
-class CueBallCoords {
-  double cueballX;
-  double cueballY;
+class ObjectBallCoords {
+  double objectBallX;
+  double objectBallY;
 
-  CueBallCoords({this.cueballX, this.cueballY});
+  ObjectBallCoords({this.objectBallX, this.objectBallY});
 }
 
-class CueBallPainter extends CustomPainter {
+class ObjectBallPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final cbCoords = CueBallCoords(
-      cueballX: size.width / 4,
-      cueballY: size.height / 1.25,
+    final obCoords = ObjectBallCoords(
+      objectBallX: size.width / 1.25,
+      objectBallY: size.height / 4,
     );
 
     final paint = Paint();
@@ -43,15 +39,17 @@ class CueBallPainter extends CustomPainter {
     final r = 40.0;
 
     // set the color property of the paint
-    paint.color = Colors.white;
+    paint.color = Colors.green;
 
     // center of the canvas is (x, y) => (width/2, height/2)
-    var center = Offset(cbCoords.cueballX, cbCoords.cueballY);
+    var center = Offset(obCoords.objectBallX, obCoords.objectBallY);
 
     // draw the circle on center of canvas having radius r
     canvas.drawCircle(center, r, paint);
+
   }
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
+  
